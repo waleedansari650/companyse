@@ -33,6 +33,10 @@
       --ring: 222.2 84% 4.9%;
 
       --radius: 0.5rem;
+      /* software enterprise color scheme */
+      --button-secondary:  #FDD601;
+      --button-secondary-hover:  #e8c204;
+      --color-secondary:  #FDD601;
     }
 
     .dark {
@@ -74,3 +78,7 @@
       @apply bg-background text-foreground;
     }
   }
+
+.button-secondary {
+  background-color: #FDD601;
+}
