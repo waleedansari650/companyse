@@ -33,7 +33,7 @@ const Navbar: React.FC = () => {
           {isMobile ? <FaTimes size={28} /> : <FaBars size={22} />}
         </button>
       </div>
-      <div className={`fixed inset-0 bg-gray-800 bg-opacity-50 transition-opacity ${isMobile ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} onClick={() => setIsMobile(false)}></div>
+      <div className={`drop-shadow-2xl fixed inset-0 bg-gray-800 bg-opacity-50 transition-opacity ${isMobile ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} onClick={() => setIsMobile(false)}></div>
       <div className={`fixed top-0 left-0 w-64 bg-white h-full shadow-md transform transition-transform ${isMobile ? 'translate-x-0 z-20' : '-translate-x-full'}`}>
         <ul className="flex flex-col items-start p-4">
           <li className="my-6 w-full">
