@@ -1,0 +1,30 @@
+/* Loader.css */
+.loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .paper-plane {
+    width: 50px;
+    height: 50px;
+    background-image: url('path_to_paper_plane_image.png'); /* Adjust path to your paper plane image */
+    background-size: contain;
+    animation: fly-plane 2s ease-in-out forwards; /* Adjust duration and timing function as needed */
+  }
+  
+  @keyframes fly-plane {
+    0% {
+      transform: translate(0, -50vh) rotate(-45deg); /* Start position at top center */
+    }
+    100% {
+      transform: translate(calc(100vw + 50px), -50vh) rotate(-45deg); /* End position at top right */
+    }
+  }
+  
