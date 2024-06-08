@@ -2,10 +2,9 @@ import React from 'react';
 import { object, string } from 'yup';
 import { useFormik } from 'formik';
 import { clientQueryHandler } from '@/services/clientServices';
-import { ToastContainer, toast } from 'react-toastify';
-import { ClientRequestForm, SuccessResponse, ErrorResponse } from '@/types/clientQuery';
+import { ClientRequestForm } from '@/types/clientQuery';
 import Loader from '@/components/loader/Loader';
-
+import toast, { Toaster } from "react-hot-toast";
 const ClientRequest: React.FC = () => {
   const [loading, setLoading] = React.useState<boolean>(false);
   const validationSchema = object().shape({
@@ -35,22 +34,10 @@ const ClientRequest: React.FC = () => {
           setLoading(true);
           let clientQueryPromise = clientQueryHandler(values);
           toast.promise(clientQueryPromise, {
-            pending: 'Client Request is being processed 🕐',
-            success: {
-              render({ data }) {
-                const response = data as SuccessResponse;
-                return `Success: ${response.message}`;
-              },
-              autoClose: 3000
-            },
-            error: {
-              render({ data }) {
-                const errorResponse = data as ErrorResponse;
-                return `Error: ${errorResponse.error}`;
-              },
-              autoClose: 3000
-            }
-          });
+            loading: 'Client Request is being processed 🕐',
+            success: (response) => <b> {response.message}</b>,
+            error: (error) => <b>{error.error}</b>,
+          })
           clientQueryPromise.then(() => {
             setTimeout(() => {
               // formik.resetForm();
@@ -69,20 +56,12 @@ const ClientRequest: React.FC = () => {
 
   return (
     <>
-      <ToastContainer
+      <Toaster
         position="top-center"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
+        reverseOrder={false}
       />
       {
-        loading ? <Loader /> : (
+        loading ? <Loader isLoading={loading} /> : (
           <div className="relative flex items-center justify-center min-h-screen my-10">
             <div className="my-auto absolute inset-0 transform h-[60vh] -skew-y-12 "
               style={{

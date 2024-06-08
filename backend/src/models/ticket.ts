@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const clientSchema =  new mongoose.Schema({
+const ticketSchema =  new mongoose.Schema({
     name: {
         type : String,
         required : [true, "Name is required"]         
@@ -38,5 +38,5 @@ const clientSchema =  new mongoose.Schema({
         default : Date.now
     }
 })
-const Client = mongoose.model('Client', clientSchema);
-export default Client;
+const Ticket = mongoose.model('Ticket', ticketSchema);
+export default Ticket;

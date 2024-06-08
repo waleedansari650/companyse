@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import connection from "./config/db";
 import clientRoutes from "./routes/clientRoute";
+import authRoutes from "./routes/authRoutes";
 require("dotenv").config();
 
 const app = express();
@@ -17,8 +18,9 @@ const server = app.listen(PORT, () => {
     `Server is runnning on PORT :  ${PORT} in ${process.env.NODE_ENV} mode.`
   );
 });
-
+app.use("/api/auth/", authRoutes);
 app.use("/api/client/", clientRoutes);
+
 process.on("unhandledRejection", (err: any) => {
   console.log(`ERROR: ${err.message}`);
   console.log("Shutting down the server due to Unhandled Promise rejection");

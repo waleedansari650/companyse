@@ -1,5 +1,61 @@
 import { checkSchema } from 'express-validator';
 
+export const signupValidator = checkSchema({
+  name: {
+    isString: {
+      errorMessage: 'Name must be a string',
+    },
+    notEmpty: {
+      errorMessage: 'Name is required',
+    },
+  },
+  email: {
+    isEmail: {
+      errorMessage: 'Invalid email address',
+    },
+    notEmpty: {
+      errorMessage: 'Email is required',
+    },
+    normalizeEmail: true,
+  },
+  password : {
+    isString: {
+      errorMessage: 'Password must be a string',
+    },
+    notEmpty: {
+      errorMessage: 'Password is required',
+    },
+    isLength: {
+      errorMessage: 'Password should be at least 6 characters long',
+      options: { min: 6 },
+  },
+  }
+})
+
+export const signinValidator = checkSchema({
+  
+  email: {
+    isEmail: {
+      errorMessage: 'Invalid email address',
+    },
+    notEmpty: {
+      errorMessage: 'Email is required',
+    },
+    normalizeEmail: true,
+  },
+  password : {
+    isString: {
+      errorMessage: 'Password must be a string',
+    },
+    notEmpty: {
+      errorMessage: 'Password is required',
+    },
+    isLength: {
+      errorMessage: 'Password should be at least 6 characters long',
+      options: { min: 6 },
+  },
+  }
+})
 export const clientQueryValidator = checkSchema({
   name: {
     isString: {

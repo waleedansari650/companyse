@@ -3,8 +3,7 @@ import catchAsyncErrors from "../middlewares/catchAsyncErrors";
 import ErrorHandler from "../utils/errorHandler";
 import { clientQueryValidator } from "../validators/client";
 import { validationResult } from "express-validator";
-import Client from "../models/client";
-
+import Ticket from "../models/ticket";
 
 export const postProjectConflictsController = catchAsyncErrors(
     async (req : Request, res : Response, next : NextFunction ) =>{
@@ -14,7 +13,7 @@ export const postProjectConflictsController = catchAsyncErrors(
             return next(new ErrorHandler(errors.array()[0].msg, 400));
         }
         const { name, phone, email, projectLink, projectDetails, issueArise, projectCredentials } = req.body;
-        const client = await Client.create({
+        const client = await Ticket.create({
             name,
             phone,
             email,
